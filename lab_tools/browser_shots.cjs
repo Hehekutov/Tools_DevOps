@@ -4,7 +4,7 @@ const fs = require('fs');
 (async () => {
   const root = path.resolve(__dirname, '..');
   const output = path.join(root, 'reports/practices-5-8/evidence');
-  const browser = await chromium.launch({channel:'msedge', headless:true});
+  const browser = await chromium.launch({channel:'msedge', headless:true,args:['--host-resolver-rules=MAP devops.local 127.0.0.1']});
   // Lab certificate is self-signed. Certificate validation is tested separately by curl --cacert.
   const context = await browser.newContext({ignoreHTTPSErrors:true, viewport:{width:1280,height:800}});
   const page = await context.newPage();
