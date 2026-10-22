@@ -64,10 +64,12 @@ S['6']['sections'][5]['evidence'].append(ev('p6-audit.txt','Отказ ауди�
 S['7']['sections'][1]['evidence'][0]['lines']=44
 S['5']['sections'][2]['evidence'][0].pop('lines',None)
 S['5']['sections'][2]['evidence'][0]['end']='curl:'
+S['6']['sections'][6]['paragraphs'][0]=S['6']['sections'][6]['paragraphs'][0].replace('Контрольная работа №8 в эту работу не включена. ','').replace('Основная ветка автоматически не изменяется.','Слияние итогового Pull Request в main согласовано владельцем репозитория.')
+S['7']['intro'][1]=S['7']['intro'][1].replace(' Контрольная работа №8 по указанию пользователя не выполнялась.','')
 S['6']['sections'][4]['paragraphs'][1]='Право r каталога разрешает перечислить имена; x разрешает пройти к известному имени. Поэтому 711 позволяет читать известный index.html, хотя ls не разрешён. При 744 список имён виден, но пройти к файлу нельзя. При запрете чтения файла журнал содержит open() failed (13: Permission denied); при отсутствии прохода по каталогу в данном опыте получено is forbidden (13: Permission denied).'
 for n in ('5','6','7'):
     S[n]['sections'].append(section('Контрольные точки VirtualBox',['Ниже приведён фактический список контрольных точек, полученный VBoxManage. Дополнительные исходные и восстановительные снимки оставлены для сохранения истории.'],evidence=[ev('snapshots.txt','Список снимков учебной виртуальной машины')]))
-pr=ROOT/'tmp/report-pr.json'
+pr=ROOT/'lab_tools/report_pr.json'
 if pr.exists():
     info=json.loads(pr.read_text(encoding='utf-8'))
     for v in S.values():v['sources'].insert(2,'Pull Request: '+info['url']+'. '+info['status'])

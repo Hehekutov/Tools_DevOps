@@ -158,7 +158,7 @@
     "sources": [
       "Методические указания к практической работе 5. Гиматдинов Д. М. 2026.",
       "Репозиторий проекта https://github.com/Hehekutov/Tools_DevOps",
-      "Pull Request: https://github.com/Hehekutov/Tools_DevOps/pull/3. Открыт, слияние в main ожидает подтверждения владельца.",
+      "Pull Request: https://github.com/Hehekutov/Tools_DevOps/pull/3. Согласовано владельцем репозитория.",
       "Документация OpenSSH https://man.openbsd.org/sshd_config",
       "Документация Ubuntu по UFW https://documentation.ubuntu.com/server/how-to/security/firewalls/"
     ],
@@ -455,7 +455,7 @@
       {
         "title": "7 Фиксация результата",
         "paragraphs": [
-          "Исходные тексты, сценарии, документация и материалы отчётов подготовлены в отдельной ветке codex/practices-5-7 репозитория Tools_DevOps. Контрольная работа №8 в эту работу не включена. Сведения о Pull Request и его фактическом состоянии приведены в разделе источников. Основная ветка автоматически не изменяется."
+          "Исходные тексты, сценарии, документация и материалы отчётов подготовлены в отдельной ветке codex/practices-5-7 репозитория Tools_DevOps. Сведения о Pull Request и его фактическом состоянии приведены в разделе источников. Слияние итогового Pull Request в main согласовано владельцем репозитория."
         ]
       },
       {
@@ -478,7 +478,7 @@
     "sources": [
       "Методические указания к практической работе 6. Гиматдинов Д. М. 2026.",
       "Репозиторий https://github.com/Hehekutov/Tools_DevOps",
-      "Pull Request: https://github.com/Hehekutov/Tools_DevOps/pull/3. Открыт, слияние в main ожидает подтверждения владельца.",
+      "Pull Request: https://github.com/Hehekutov/Tools_DevOps/pull/3. Согласовано владельцем репозитория.",
       "Nginx https://nginx.org/ru/docs/",
       "rsync https://download.samba.org/pub/rsync/rsync.1",
       "OpenSSL https://docs.openssl.org/3.0/man1/openssl-req/",
@@ -495,7 +495,7 @@
     "title": "Контейнеризация. Docker и Docker Compose",
     "intro": [
       "Цель — упаковать Flask-приложение в контейнер, подключить PostgreSQL с постоянным хранением данных и опубликовать приложение через обратный прокси Nginx. Изучены слои и кэш образов, права процесса, сеть Compose, готовность базы и особенности фильтрации портов Docker.",
-      "Выполнены аудиторная и самостоятельная части. Использована виртуальная машина предыдущих работ; статический ресурс Nginx сохранён. Контрольная работа №8 по указанию пользователя не выполнялась."
+      "Выполнены аудиторная и самостоятельная части. Использована виртуальная машина предыдущих работ; статический ресурс Nginx сохранён."
     ],
     "environment": [
       [
@@ -744,7 +744,7 @@
     "sources": [
       "Методические указания к практической работе 7. Гиматдинов Д. М. 2026.",
       "Репозиторий https://github.com/Hehekutov/Tools_DevOps",
-      "Pull Request: https://github.com/Hehekutov/Tools_DevOps/pull/3. Открыт, слияние в main ожидает подтверждения владельца.",
+      "Pull Request: https://github.com/Hehekutov/Tools_DevOps/pull/3. Согласовано владельцем репозитория.",
       "Установка Docker Engine https://docs.docker.com/engine/install/ubuntu/",
       "Dockerfile https://docs.docker.com/reference/dockerfile/",
       "Кэш сборки https://docs.docker.com/build/cache/",
