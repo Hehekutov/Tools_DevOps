@@ -2,6 +2,7 @@
 from pathlib import Path
 import argparse, json, sys, tempfile, time
 import paramiko
+sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = Path(__file__).resolve().parents[1]
 AUTH = Path(tempfile.gettempdir()) / 'codex-devops-auth.json'
@@ -16,7 +17,7 @@ def connect(user=None, port=2222):
     kwargs={'password':auth['password'],'key_filename':str(Path.home()/'.ssh/devops_vm')}
     if username in ('devops','ubuntu-server'):
         kwargs={'key_filename':str(Path.home()/'.ssh/devops_vm')}
-    client.connect('127.0.0.1',port=port,username=username,timeout=10,allow_agent=False,look_for_keys=False,**kwargs)
+    client.connect('127.0.0.1',port=port,username=username,timeout=8,banner_timeout=8,auth_timeout=8,allow_agent=False,look_for_keys=False,**kwargs)
     client.save_host_keys(str(known))
     return client,auth
 
