@@ -50,6 +50,20 @@ S['7']={
 S['6']['sections'][5]['evidence'][0]['start']='INVALID_VALIDITY_THRESHOLD'
 S['7']['appendices'][-1]={'title':'Приложение Г. Раздел 9 инструкции восстановления','file':'docs/server-setup.md','start':'## 9. Контейнеризация'}
 S['6']['sections'][3]['evidence']=[ev(f'p6-deploy-{i}.txt',caption,lines=20) for i,caption in [(1,'1 Пробный запуск'),(2,'2 Зафиксированное изменение'),(3,'3 Незакоммиченное изменение'),(4,'4 Остановленный Nginx'),(5,'5 Отсутствующий index.html')]]
+S['6']['sections'][4]['paragraphs'][2]='Небезопасная доставка с правами 666 позволила пользователю www-data записать defaced, что подтверждено HTTP-ответом. В применённой среде MSYS2 chmod 666 не изменил представление прав NTFS-источника: ls продолжил показывать 644. Поэтому для отдельного отрицательного опыта права 666 намеренно воспроизведены параметром rsync --chmod=F666. Это адаптация опыта к Windows; штатная доставка по-прежнему использует D755,F644. После опыта deploy.sh восстановил исходное содержимое и безопасные права. На реальном сервере возможность выполнения кода от пользователя веб-сервера в сочетании с правом записи позволила бы нарушителю подменять страницы.'
+S['6']['sections'][4]['evidence'].extend([ev('p6-unsafe-sync.txt','Намеренно небезопасная доставка из Windows',lines=19),ev('p6-unsafe-result.txt','Запись в файл от имени www-data и HTTP-ответ')])
+S['6']['sections'][0]['paragraphs'].append('Отдельно воспроизведён начальный HTTP-этап: временная конфигурация на порту 80 вернула с Windows HTTP 200 и devops.local: placeholder. После проверки восстановлен постоянный редирект на HTTPS. Проверка зафиксирована отдельно, поэтому её результат не смешивается с последующим ответом 301.')
+S['6']['sections'][0]['evidence'].append(ev('p6-http-initial.txt','Начальная HTTP-конфигурация и ответ с компьютера',lines=14))
+S['6']['sections'][0]['evidence'][0]=ev('p6-restoration.txt','Контроль после восстановления и измеренное время',start='VERIFICATION AFTER RESTORE')
+S['6']['sections'][0]['evidence'][-1]['lines']=16
+S['5']['sections'][4]['evidence'][0].pop('lines',None)
+S['5']['sections'][4]['evidence'][0]['end']='AUDIT RESTORED CONFIGURATION'
+S['6']['sections'][5]['evidence'][0].pop('lines',None)
+S['6']['sections'][5]['evidence'][0]['end']='WORLD_WRITABLE_FILE'
+S['6']['sections'][5]['evidence'].append(ev('p6-audit.txt','Отказ аудита при разрешённой записи всем',start='WORLD_WRITABLE_FILE',end='RESTORED'))
+S['7']['sections'][1]['evidence'][0]['lines']=44
+S['5']['sections'][2]['evidence'][0].pop('lines',None)
+S['5']['sections'][2]['evidence'][0]['end']='curl:'
 S['6']['sections'][4]['paragraphs'][1]='Право r каталога разрешает перечислить имена; x разрешает пройти к известному имени. Поэтому 711 позволяет читать известный index.html, хотя ls не разрешён. При 744 список имён виден, но пройти к файлу нельзя. При запрете чтения файла журнал содержит open() failed (13: Permission denied); при отсутствии прохода по каталогу в данном опыте получено is forbidden (13: Permission denied).'
 for n in ('5','6','7'):
     S[n]['sections'].append(section('Контрольные точки VirtualBox',['Ниже приведён фактический список контрольных точек, полученный VBoxManage. Дополнительные исходные и восстановительные снимки оставлены для сохранения истории.'],evidence=[ev('snapshots.txt','Список снимков учебной виртуальной машины')]))

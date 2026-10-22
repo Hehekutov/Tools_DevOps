@@ -1,0 +1,12 @@
+sending incremental file list
+./
+404.html
+index.html
+
+sent 491 bytes  received 76 bytes  1,134.00 bytes/sec
+total size is 542  speedup is 0.96
+Deployed commit f2b08ba
+building file list ... done
+
+sent 5,005 bytes  received 12 bytes  115.33 bytes/sec
+total size is 1,371,343  speedup is 273.34

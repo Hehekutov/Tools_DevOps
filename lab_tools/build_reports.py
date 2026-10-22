@@ -7,6 +7,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.enum.table import WD_TABLE_ALIGNMENT,WD_CELL_VERTICAL_ALIGNMENT
+from PIL import Image,ImageChops
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'output/reports';OUT.mkdir(parents=True,exist_ok=True)
@@ -18,9 +19,11 @@ def para(doc,text='',style=None):
     return p
 
 def code(doc,text):
-    for line in text.rstrip().splitlines():
+    lines=text.rstrip().splitlines()
+    for i,line in enumerate(lines):
         # Soft wrapping keeps terminal output inside the printable page.
         p=doc.add_paragraph(style='Code');p.add_run(line.expandtabs(4))
+        if len(lines)<=24:p.paragraph_format.keep_with_next=i<len(lines)-1
 
 def table(doc,headers,rows,widths=None):
     t=doc.add_table(rows=1,cols=len(headers));t.alignment=WD_TABLE_ALIGNMENT.CENTER
@@ -46,6 +49,7 @@ def table(doc,headers,rows,widths=None):
             for p in cell.paragraphs:
                 p.paragraph_format.space_after=Pt(3);p.paragraph_format.line_spacing=1
                 for run in p.runs:run.font.size=Pt(10);run.bold=ri==0
+        row._tr.get_or_add_trPr().append(OxmlElement('w:cantSplit'))
     repeat=OxmlElement('w:tblHeader');t.rows[0]._tr.get_or_add_trPr().append(repeat)
     para(doc)
 
@@ -55,7 +59,13 @@ def create(n,spec):
     s.top_margin=Cm(2);s.bottom_margin=Cm(2);s.left_margin=Cm(2.5);s.right_margin=Cm(1.5)
     for name in ['Normal','Title','Subtitle','Heading 1','Heading 2','Caption']:
         st=d.styles[name];st.font.name='Times New Roman';st.font.color.rgb=RGBColor(0,0,0)
-        st.element.get_or_add_rPr().rFonts.set(qn('w:eastAsia'),'Times New Roman')
+        fonts=st.element.get_or_add_rPr().rFonts
+        for key in list(fonts.attrib):
+            if 'theme' in key.lower():del fonts.attrib[key]
+        for key in ['ascii','hAnsi','eastAsia','cs']:fonts.set(qn('w:'+key),'Times New Roman')
+        props=st.element.find(qn('w:pPr'))
+        if props is not None:
+            for border in list(props.findall(qn('w:pBdr'))):props.remove(border)
     normal=d.styles['Normal'];normal.font.size=Pt(12);normal.paragraph_format.line_spacing=1.15;normal.paragraph_format.space_after=Pt(6)
     normal.paragraph_format.alignment=WD_ALIGN_PARAGRAPH.JUSTIFY
     for name,size in [('Title',18),('Heading 1',15),('Heading 2',13)]:
@@ -65,6 +75,8 @@ def create(n,spec):
     st.paragraph_format.line_spacing=1;st.paragraph_format.space_after=Pt(0);st.paragraph_format.alignment=WD_ALIGN_PARAGRAPH.LEFT
     st.paragraph_format.keep_together=True
     s.different_first_page_header_footer=True
+    cover_footer=s.first_page_footer.paragraphs[0];cover_footer.alignment=WD_ALIGN_PARAGRAPH.CENTER
+    run=cover_footer.add_run('2026');run.font.name='Times New Roman';run.font.size=Pt(12)
     footer=s.footer.paragraphs[0];footer.alignment=WD_ALIGN_PARAGRAPH.CENTER
     field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');footer._p.append(field)
     for text in ['ИНСТИТУТ ИПТИП','Кафедра индустриального программирования','Дисциплина Инструменты девопс']:
@@ -75,7 +87,6 @@ def create(n,spec):
     for _ in range(4):para(d)
     for text in ['Выполнил Кудояров Денис Рустемович','Группа ЭФБО-18-24','Проверяющий Гиматдинов Дамир Маратович']:
         p=para(d,text);p.alignment=WD_ALIGN_PARAGRAPH.RIGHT
-    para(d);p=para(d,'2026');p.alignment=WD_ALIGN_PARAGRAPH.CENTER
     d.add_page_break()
     d.add_heading('Цель и задачи работы',level=1)
     for text in spec['intro']:para(d,text)
@@ -90,14 +101,28 @@ def create(n,spec):
         for item in section.get('evidence',[]):
             p=EVID/item['file']
             if not p.exists():raise FileNotFoundError(p)
-            para(d,item['caption'])
+            para(d,item['caption']).paragraph_format.keep_with_next=True
             text=p.read_text(encoding='utf-8',errors='replace')
-            if 'start' in item:text=text.split(item['start'],1)[-1]
+            if 'start' in item:
+                if item['start'] not in text:raise ValueError('Missing evidence marker: '+item['start'])
+                text=text.split(item['start'],1)[1].lstrip('\n')
+            if 'end' in item:
+                if item['end'] not in text:raise ValueError('Missing evidence marker: '+item['end'])
+                text=text.split(item['end'],1)[0].rstrip()
             if 'lines' in item:text='\n'.join(text.splitlines()[:item['lines']])
             code(d,text)
         for item in section.get('images',[]):
             p=EVID/item['file']
             if not p.exists():raise FileNotFoundError(p)
+            if p.suffix.lower()=='.png':
+                # Trim only empty viewport margins; the original evidence stays intact.
+                im=Image.open(p).convert('RGB');bg='white' if 'browser' in p.stem else im.getpixel((im.width-1,im.height-1))
+                mask=ImageChops.difference(im,Image.new('RGB',im.size,bg)).convert('L').point(lambda v:255 if v>20 else 0)
+                box=mask.getbbox()
+                if box:
+                    box=(max(0,box[0]-10),max(0,box[1]-10),min(im.width,box[2]+20),min(im.height,box[3]+20))
+                    crop=ROOT/'tmp/report-inputs'/p.name;crop.parent.mkdir(parents=True,exist_ok=True)
+                    im.crop(box).save(crop);p=crop
             pp=para(d);pp.alignment=WD_ALIGN_PARAGRAPH.CENTER;pp.paragraph_format.keep_with_next=True
             pp.add_run().add_picture(str(p),width=Cm(16.2))
             cp=para(d,item['caption'],'Caption');cp.alignment=WD_ALIGN_PARAGRAPH.CENTER
@@ -107,7 +132,11 @@ def create(n,spec):
     d.add_heading('Выводы',level=1)
     for text in spec['conclusions']:para(d,text)
     d.add_heading('Репозиторий и источники',level=1)
-    for text in spec['sources']:para(d,text)
+    for i,text in enumerate(spec['sources']):
+        p=para(d,text);p.paragraph_format.alignment=WD_ALIGN_PARAGRAPH.LEFT
+        p.paragraph_format.space_after=Pt(3);p.paragraph_format.line_spacing=1.05
+        p.paragraph_format.keep_with_next=i<len(spec['sources'])-1
+        for run in p.runs:run.font.size=Pt(11)
     for appendix in spec.get('appendices',[]):
         d.add_page_break();d.add_heading(appendix['title'],level=1)
         path=ROOT/appendix['file'];body=path.read_text(encoding='utf-8')

@@ -1,0 +1,27 @@
+
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 22 Oct 2026 21:47:04 GMT
+Content-Type: text/html
+Content-Length: 26
+Last-Modified: Thu, 22 Oct 2026 21:47:03 GMT
+Connection: keep-alive
+ETag: "6ada8457-1a"
+Accept-Ranges: bytes
+
+devops.local: placeholder
+
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+100     26 100     26   0      0   1461      0                              0
+100     26 100     26   0      0   1456      0                              0
+100     26 100     26   0      0   1451      0                              0
+
+
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
