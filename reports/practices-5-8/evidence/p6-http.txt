@@ -1,0 +1,140 @@
+HTTP REDIRECT
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+  0    178   0      0   0      0      0      0                              0
+  0    178   0      0   0      0      0      0                              0
+  0    178   0      0   0      0      0      0                              0
+HTTP/1.1 301 Moved Permanently
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 22 Oct 2026 21:26:08 GMT
+Content-Type: text/html
+Content-Length: 178
+Connection: keep-alive
+Location: https://devops.local/
+
+DEFAULT CERTIFICATE VERIFICATION
+curl: (60) schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - ������� ������������ �������� ������� ������������, �� ������� �������.
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the webpage mentioned above.
+curl_exit=60
+EXPLICIT TRUST
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 22 Oct 2026 21:26:08 GMT
+Content-Type: text/html
+Content-Length: 346
+Last-Modified: Thu, 22 Oct 2026 21:25:36 GMT
+Connection: keep-alive
+ETag: "6ada7f50-15a"
+Accept-Ranges: bytes
+
+<!DOCTYPE html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>DevOps Course 2026</title></head>
+<body>
+<h1>DevOps Course 2026</h1>
+<p>Студент: Кудояров Денис Рустемович, группа ЭФБО-18-24</p>
+<p>Содержимое доставлено средствами rsync. Версия 2.</p>
+</body></html>
+100    346 100    346   0      0   6513      0                              0
+100    346 100    346   0      0   6504      0                              0
+100    346 100    346   0      0   6498      0                              0
+curl_exit=0
+CUSTOM 404
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+100    196 100    196   0      0   3600      0                              0
+100    196 100    196   0      0   3595      0                              0
+100    196 100    196   0      0   3588      0                              0
+HTTP/1.1 404 Not Found
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 22 Oct 2026 21:26:08 GMT
+Content-Type: text/html
+Content-Length: 196
+Connection: keep-alive
+ETag: "6ada79cc-c4"
+
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>404</title></head>
+<body><h1>404 — ресурс не найден</h1><p><a href="/">На главную</a></p></body></html>
+VERBOSE TLS EXCHANGE
+* Host devops.local:443 was resolved.
+* IPv6: (none)
+* IPv4: 192.168.56.101
+*   Trying 192.168.56.101:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* schannel: added 1 certificate(s) from CA file 'C:\Users\денис\devops.crt'
+* schannel: connection hostname (devops.local) validated against certificate name (devops.local)
+* ALPN: server accepted http/1.1
+* Established connection to devops.local (192.168.56.101 port 443) from 192.168.56.1 port 52781 
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0* using HTTP/1.x
+> GET / HTTP/1.1
+
+> Host: devops.local
+
+> User-Agent: curl/8.21.0
+
+> Accept: */*
+
+> 
+
+* Request completely sent off
+* schannel: remote party requests renegotiation
+* schannel: renegotiating SSL/TLS connection
+* schannel: reusing certificate store from cache
+* schannel: connection hostname (devops.local) validated against certificate name (devops.local)
+* schannel: SSL/TLS connection renegotiated
+* schannel: remote party requests renegotiation
+* schannel: renegotiating SSL/TLS connection
+* schannel: reusing certificate store from cache
+* schannel: connection hostname (devops.local) validated against certificate name (devops.local)
+* schannel: SSL/TLS connection renegotiated
+< HTTP/1.1 200 OK
+
+< Server: nginx/1.24.0 (Ubuntu)
+
+< Date: Thu, 22 Oct 2026 21:26:08 GMT
+
+< Content-Type: text/html
+
+< Content-Length: 346
+
+< Last-Modified: Thu, 22 Oct 2026 21:25:36 GMT
+
+< Connection: keep-alive
+
+< ETag: "6ada7f50-15a"
+
+< Accept-Ranges: bytes
+
+< 
+
+{ [346 bytes data]
+
+100    346 100    346   0      0   5745      0                              0
+100    346 100    346   0      0   5739      0                              0
+100    346 100    346   0      0   5725      0                              0
+* Connection #0 to host devops.local:443 left intact
+<!DOCTYPE html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>DevOps Course 2026</title></head>
+<body>
+<h1>DevOps Course 2026</h1>
+<p>Студент: Кудояров Денис Рустемович, группа ЭФБО-18-24</p>
+<p>Содержимое доставлено средствами rsync. Версия 2.</p>
+</body></html>

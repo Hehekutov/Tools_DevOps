@@ -1,0 +1,39 @@
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 22 Oct 2026 21:36:44 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 40
+Connection: keep-alive
+
+Hello from Docker, Kudoyarov! Visits: 2
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 22 Oct 2026 21:36:44 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 3
+Connection: keep-alive
+
+ok
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 22 Oct 2026 21:36:44 GMT
+Content-Type: text/html
+Content-Length: 346
+Last-Modified: Thu, 22 Oct 2026 21:25:36 GMT
+Connection: keep-alive
+ETag: "6ada7f50-15a"
+Accept-Ranges: bytes
+
+
+STDERR
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    40  100    40    0     0   1209      0 --:--:-- --:--:-- --:--:--  1250
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100     3  100     3    0     0    259      0 --:--:-- --:--:-- --:--:--   272
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0   346    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+
+EXIT STATUS: 0

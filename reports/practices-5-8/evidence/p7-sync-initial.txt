@@ -1,0 +1,24 @@
+sending incremental file list
+created directory app
+./
+.dockerignore
+.env.example
+Dockerfile
+app.py
+docker-compose.yml
+requirements.txt
+
+sent 258 bytes  received 70 bytes  218.67 bytes/sec
+total size is 1,894  speedup is 5.77 (DRY RUN)
+sending incremental file list
+created directory app
+./
+.dockerignore
+.env.example
+Dockerfile
+app.py
+docker-compose.yml
+requirements.txt
+
+sent 1,588 bytes  received 166 bytes  3,508.00 bytes/sec
+total size is 1,894  speedup is 1.08

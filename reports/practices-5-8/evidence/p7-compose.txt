@@ -1,0 +1,313 @@
+600 devops:devops .env
+#1 [internal] load local bake definitions
+#1 reading from stdin 471B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 305B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 64B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 63B done
+#5 DONE 0.0s
+
+#6 [1/6] FROM docker.io/library/python:3.12-slim@sha256:cb33f7f771ecec2ef1225cf39b159591a040391bd73e4c01f00fdfc4c47611d2
+#6 resolve docker.io/library/python:3.12-slim@sha256:cb33f7f771ecec2ef1225cf39b159591a040391bd73e4c01f00fdfc4c47611d2 0.1s done
+#6 DONE 0.1s
+
+#7 [3/6] WORKDIR /app
+#7 CACHED
+
+#8 [4/6] COPY requirements.txt .
+#8 CACHED
+
+#9 [5/6] RUN pip install --no-cache-dir -r requirements.txt
+#9 CACHED
+
+#10 [2/6] RUN useradd --system --no-create-home app
+#10 CACHED
+
+#11 [6/6] COPY app.py .
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:7ce8ef3948b0a24289f014934a620c3141819ab77ef80ca5b0fecb7f81643ddf 0.0s done
+#12 exporting config sha256:4772aa475869fd07463d726fd2957316abfd0f979e6ebaa6fc605c0b9f479f04 0.0s done
+#12 exporting attestation manifest sha256:36a54e8b5984f3a5dbe2ef04c03b63e445a8ced97a4f476aaebed7d07d862c0b
+#12 exporting attestation manifest sha256:36a54e8b5984f3a5dbe2ef04c03b63e445a8ced97a4f476aaebed7d07d862c0b 0.0s done
+#12 exporting manifest list sha256:6b191905186acbf0a5b355b59cfd3dca3ffdd32bf9fd5150d2d74eaef56d039e 0.0s done
+#12 naming to docker.io/library/devops-app:1.0 done
+#12 unpacking to docker.io/library/devops-app:1.0 0.0s done
+#12 DONE 0.2s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+NAME        IMAGE                COMMAND                  SERVICE   CREATED         STATUS                   PORTS
+app-app-1   devops-app:1.0       "gunicorn --bind 0.0…"   app       7 seconds ago   Up Less than a second    127.0.0.1:5000->5000/tcp
+app-db-1    postgres:16-alpine   "docker-entrypoint.s…"   db        8 seconds ago   Up 6 seconds (healthy)   5432/tcp
+uid=999(app) gid=999(app) groups=999(app)
+
+STDERR
+ Image postgres:16-alpine Pulling 
+ 9f477227db48 Pulling fs layer 0B
+ 7b229517ed22 Pulling fs layer 0B
+ 768bbab50810 Pulling fs layer 0B
+ d982e6c592c4 Pulling fs layer 0B
+ a735dce41235 Pulling fs layer 0B
+ 42065dcfea93 Pulling fs layer 0B
+ f121f7f3dec1 Pulling fs layer 0B
+ 7ea8819886f9 Pulling fs layer 0B
+ d3f6cab92edc Pulling fs layer 0B
+ 911527e7800c Pulling fs layer 0B
+ 22df74fd5323 Pulling fs layer 0B
+ 22df74fd5323 Download complete 0B
+ 9f477227db48 Download complete 0B
+ 768bbab50810 Download complete 0B
+ 7b229517ed22 Downloading 1.049MB
+ a735dce41235 Download complete 0B
+ 7b229517ed22 Downloading 1.049MB
+ 7b229517ed22 Downloading 2.097MB
+ 7b229517ed22 Downloading 3.146MB
+ 7b229517ed22 Download complete 0B
+ 42065dcfea93 Download complete 0B
+ 7b229517ed22 Extracting 1B
+ 7b229517ed22 Extracting 1B
+ 7b229517ed22 Extracting 1B
+ 7b229517ed22 Extracting 1B
+ 7b229517ed22 Extracting 1B
+ 768bbab50810 Extracting 1B
+ 7b229517ed22 Pull complete 0B
+ d982e6c592c4 Downloading 900kB
+ 7ea8819886f9 Downloading 9.671kB
+ 768bbab50810 Pull complete 0B
+ d982e6c592c4 Download complete 0B
+ f121f7f3dec1 Downloading 1.049MB
+ f121f7f3dec1 Downloading 1.049MB
+ 7ea8819886f9 Download complete 0B
+ d3f6cab92edc Downloading 130B
+ f121f7f3dec1 Downloading 2.097MB
+ d3f6cab92edc Download complete 0B
+ d982e6c592c4 Extracting 1B
+ 911527e7800c Download complete 0B
+ f121f7f3dec1 Downloading 2.097MB
+ d982e6c592c4 Pull complete 0B
+ f121f7f3dec1 Downloading 2.097MB
+ b3e0ec4a3ace Download complete 0B
+ 9f4aa3a44541 Downloading 598kB
+ f121f7f3dec1 Downloading 2.097MB
+ a735dce41235 Pull complete 0B
+ 9f4aa3a44541 Download complete 0B
+ f121f7f3dec1 Downloading 3.146MB
+ 42065dcfea93 Extracting 1B
+ f121f7f3dec1 Downloading 4.194MB
+ 42065dcfea93 Pull complete 0B
+ f121f7f3dec1 Downloading 5.243MB
+ f121f7f3dec1 Downloading 6.291MB
+ f121f7f3dec1 Downloading 6.291MB
+ f121f7f3dec1 Downloading 6.291MB
+ f121f7f3dec1 Downloading 7.836MB
+ f121f7f3dec1 Downloading 9.437MB
+ f121f7f3dec1 Downloading 10.49MB
+ f121f7f3dec1 Downloading 10.49MB
+ f121f7f3dec1 Downloading 11.53MB
+ f121f7f3dec1 Downloading 13.63MB
+ f121f7f3dec1 Downloading 13.63MB
+ f121f7f3dec1 Downloading 15.73MB
+ f121f7f3dec1 Downloading 15.73MB
+ f121f7f3dec1 Downloading 16.78MB
+ f121f7f3dec1 Downloading 18.87MB
+ f121f7f3dec1 Downloading 19.92MB
+ f121f7f3dec1 Downloading 20.97MB
+ f121f7f3dec1 Downloading 20.97MB
+ f121f7f3dec1 Downloading 22.02MB
+ f121f7f3dec1 Downloading 24.12MB
+ f121f7f3dec1 Downloading 25.17MB
+ f121f7f3dec1 Downloading 26.21MB
+ f121f7f3dec1 Downloading 27.26MB
+ f121f7f3dec1 Downloading 29.36MB
+ f121f7f3dec1 Downloading 29.36MB
+ f121f7f3dec1 Downloading 30.41MB
+ f121f7f3dec1 Downloading 31.46MB
+ f121f7f3dec1 Downloading 32.51MB
+ f121f7f3dec1 Downloading 34.6MB
+ f121f7f3dec1 Downloading 34.6MB
+ f121f7f3dec1 Downloading 35.65MB
+ f121f7f3dec1 Downloading 36.7MB
+ f121f7f3dec1 Downloading 37.75MB
+ f121f7f3dec1 Downloading 39.85MB
+ f121f7f3dec1 Downloading 39.85MB
+ f121f7f3dec1 Downloading 41.94MB
+ f121f7f3dec1 Downloading 41.94MB
+ f121f7f3dec1 Downloading 44.04MB
+ f121f7f3dec1 Downloading 45.09MB
+ f121f7f3dec1 Downloading 46.14MB
+ f121f7f3dec1 Downloading 46.14MB
+ f121f7f3dec1 Downloading 47.19MB
+ f121f7f3dec1 Downloading 50.17MB
+ f121f7f3dec1 Downloading 51.38MB
+ f121f7f3dec1 Downloading 51.38MB
+ f121f7f3dec1 Downloading 51.38MB
+ f121f7f3dec1 Downloading 52.43MB
+ f121f7f3dec1 Downloading 54.53MB
+ f121f7f3dec1 Downloading 55.57MB
+ f121f7f3dec1 Downloading 56.62MB
+ f121f7f3dec1 Downloading 56.62MB
+ f121f7f3dec1 Downloading 58.02MB
+ f121f7f3dec1 Downloading 59.77MB
+ f121f7f3dec1 Downloading 61.87MB
+ f121f7f3dec1 Downloading 62.91MB
+ f121f7f3dec1 Downloading 62.91MB
+ f121f7f3dec1 Downloading 65.01MB
+ f121f7f3dec1 Downloading 66.06MB
+ f121f7f3dec1 Downloading 67.11MB
+ f121f7f3dec1 Downloading 67.11MB
+ f121f7f3dec1 Downloading 68.16MB
+ f121f7f3dec1 Downloading 69.21MB
+ f121f7f3dec1 Downloading 71.3MB
+ f121f7f3dec1 Downloading 72.35MB
+ f121f7f3dec1 Downloading 73.4MB
+ f121f7f3dec1 Downloading 74.45MB
+ f121f7f3dec1 Downloading 75.5MB
+ f121f7f3dec1 Downloading 76.55MB
+ f121f7f3dec1 Downloading 77.59MB
+ f121f7f3dec1 Downloading 77.59MB
+ f121f7f3dec1 Downloading 79.43MB
+ f121f7f3dec1 Downloading 80.74MB
+ f121f7f3dec1 Downloading 81.79MB
+ f121f7f3dec1 Downloading 81.79MB
+ f121f7f3dec1 Downloading 83.89MB
+ f121f7f3dec1 Downloading 85.09MB
+ f121f7f3dec1 Downloading 85.98MB
+ f121f7f3dec1 Downloading 87.03MB
+ f121f7f3dec1 Downloading 88.08MB
+ f121f7f3dec1 Downloading 89.13MB
+ f121f7f3dec1 Downloading 90.18MB
+ f121f7f3dec1 Downloading 92.27MB
+ f121f7f3dec1 Downloading 92.27MB
+ f121f7f3dec1 Downloading 93.32MB
+ f121f7f3dec1 Downloading 94.37MB
+ f121f7f3dec1 Downloading 96.47MB
+ f121f7f3dec1 Downloading 97.52MB
+ f121f7f3dec1 Downloading 97.52MB
+ f121f7f3dec1 Downloading 98.57MB
+ f121f7f3dec1 Downloading 99.61MB
+ f121f7f3dec1 Downloading 101.7MB
+ f121f7f3dec1 Downloading 102.8MB
+ f121f7f3dec1 Downloading 103.8MB
+ f121f7f3dec1 Downloading 104.9MB
+ f121f7f3dec1 Downloading 104.9MB
+ f121f7f3dec1 Downloading 104.9MB
+ f121f7f3dec1 Downloading 104.9MB
+ f121f7f3dec1 Downloading 105.9MB
+ f121f7f3dec1 Downloading 107MB
+ f121f7f3dec1 Downloading 108MB
+ f121f7f3dec1 Downloading 109.1MB
+ f121f7f3dec1 Downloading 110.1MB
+ f121f7f3dec1 Downloading 111.3MB
+ f121f7f3dec1 Downloading 111.3MB
+ f121f7f3dec1 Download complete 0B
+ f121f7f3dec1 Extracting 1B
+ f121f7f3dec1 Extracting 1B
+ f121f7f3dec1 Extracting 1B
+ f121f7f3dec1 Extracting 1B
+ f121f7f3dec1 Extracting 1B
+ f121f7f3dec1 Extracting 1B
+ f121f7f3dec1 Extracting 1B
+ f121f7f3dec1 Extracting 1B
+ f121f7f3dec1 Extracting 1B
+ f121f7f3dec1 Extracting 1B
+ f121f7f3dec1 Extracting 2B
+ f121f7f3dec1 Extracting 2B
+ f121f7f3dec1 Extracting 2B
+ f121f7f3dec1 Extracting 2B
+ f121f7f3dec1 Extracting 2B
+ f121f7f3dec1 Extracting 2B
+ f121f7f3dec1 Extracting 2B
+ f121f7f3dec1 Extracting 2B
+ f121f7f3dec1 Extracting 2B
+ f121f7f3dec1 Extracting 2B
+ f121f7f3dec1 Extracting 3B
+ f121f7f3dec1 Extracting 3B
+ f121f7f3dec1 Extracting 3B
+ f121f7f3dec1 Extracting 3B
+ f121f7f3dec1 Extracting 3B
+ f121f7f3dec1 Extracting 3B
+ f121f7f3dec1 Extracting 3B
+ f121f7f3dec1 Extracting 3B
+ f121f7f3dec1 Extracting 3B
+ f121f7f3dec1 Extracting 3B
+ f121f7f3dec1 Extracting 4B
+ f121f7f3dec1 Extracting 4B
+ f121f7f3dec1 Extracting 4B
+ f121f7f3dec1 Extracting 4B
+ f121f7f3dec1 Extracting 4B
+ f121f7f3dec1 Extracting 4B
+ f121f7f3dec1 Extracting 4B
+ f121f7f3dec1 Extracting 4B
+ f121f7f3dec1 Extracting 4B
+ f121f7f3dec1 Extracting 4B
+ f121f7f3dec1 Extracting 5B
+ f121f7f3dec1 Extracting 5B
+ f121f7f3dec1 Extracting 5B
+ f121f7f3dec1 Extracting 5B
+ f121f7f3dec1 Extracting 5B
+ f121f7f3dec1 Extracting 5B
+ f121f7f3dec1 Extracting 5B
+ f121f7f3dec1 Extracting 5B
+ f121f7f3dec1 Extracting 5B
+ f121f7f3dec1 Extracting 5B
+ f121f7f3dec1 Extracting 6B
+ f121f7f3dec1 Extracting 6B
+ f121f7f3dec1 Extracting 6B
+ f121f7f3dec1 Extracting 6B
+ f121f7f3dec1 Extracting 6B
+ f121f7f3dec1 Extracting 6B
+ f121f7f3dec1 Extracting 6B
+ f121f7f3dec1 Extracting 6B
+ f121f7f3dec1 Extracting 6B
+ f121f7f3dec1 Extracting 6B
+ f121f7f3dec1 Extracting 7B
+ f121f7f3dec1 Extracting 7B
+ f121f7f3dec1 Extracting 7B
+ f121f7f3dec1 Extracting 7B
+ f121f7f3dec1 Pull complete 0B
+ 7ea8819886f9 Pull complete 0B
+ d3f6cab92edc Pull complete 0B
+ 911527e7800c Pull complete 0B
+ 22df74fd5323 Pull complete 0B
+ 9f477227db48 Pull complete 0B
+ Image postgres:16-alpine Pulled 
+ Image devops-app:1.0 Building 
+ Image devops-app:1.0 Built 
+ Network app_backend Creating 
+ Network app_backend Creating 
+ Volume app_db_data Creating 
+ Volume app_db_data Creating 
+ Volume app_db_data Created 
+ Volume app_db_data Created 
+ Network app_backend Created 
+ Network app_backend Created 
+ Container app-db-1 Creating 
+ Container app-db-1 Created 
+ Container app-app-1 Creating 
+ Container app-app-1 Created 
+ Container app-db-1 Starting 
+ Container app-db-1 Started 
+ Container app-db-1 Waiting 
+ Container app-db-1 Healthy 
+ Container app-app-1 Starting 
+ Container app-app-1 Started 
+ Container app-app-1 Waiting 
+ Container app-db-1 Waiting 
+ Container app-app-1 Healthy 
+ Container app-db-1 Healthy 
+
+EXIT STATUS: 0

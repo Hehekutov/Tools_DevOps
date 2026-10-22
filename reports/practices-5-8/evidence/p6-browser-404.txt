@@ -1,0 +1,8 @@
+Requested: https://devops.local/no-such-page
+Final URL: https://devops.local/no-such-page
+HTTP status: 404
+Title: 404
+
+404 — ресурс не найден
+
+На главную

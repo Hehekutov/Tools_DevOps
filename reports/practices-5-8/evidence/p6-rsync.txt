@@ -1,0 +1,36 @@
+bash.exe: warning: could not find /tmp, please create!
+bash.exe: warning: could not find /tmp, please create!
+CLIENT FILE MODES
+total 2
+-rw-r--r-- 1 денис денис 196 Oct 23 00:02 404.html
+-rw-r--r-- 1 денис денис 330 Oct 23 00:02 index.html
+RSYNC DRY RUN
+sending incremental file list
+./
+404.html
+index.html
+
+sent 132 bytes  received 32 bytes  109.33 bytes/sec
+total size is 526  speedup is 3.21 (DRY RUN)
+RSYNC DELIVERY
+sending incremental file list
+./
+404.html
+index.html
+
+sent 575 bytes  received 70 bytes  430.00 bytes/sec
+total size is 526  speedup is 0.82
+DEPLOY SCRIPT DRY RUN
+bash.exe: warning: could not find /tmp, please create!
+sending incremental file list
+
+sent 119 bytes  received 19 bytes  276.00 bytes/sec
+total size is 526  speedup is 3.81 (DRY RUN)
+Dry run complete
+DEPLOY SCRIPT NORMAL RUN
+bash.exe: warning: could not find /tmp, please create!
+sending incremental file list
+
+sent 119 bytes  received 19 bytes  276.00 bytes/sec
+total size is 526  speedup is 3.81
+Deployed commit fca0a78

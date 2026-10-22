@@ -1,0 +1,10 @@
+KEY LOGIN
+devops-vm.devops.local
+exit=0
+ROOT LOGIN
+root@127.0.0.1: Permission denied (publickey).
+exit=255
+PASSWORD LOGIN
+devops@127.0.0.1: Permission denied (publickey).
+exit=255
+curl: (28) Connection timed out after 3001 milliseconds

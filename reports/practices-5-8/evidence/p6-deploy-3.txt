@@ -1,0 +1,5 @@
+SCENARIO: uncommitted update
+Uncommitted changes in repository
+
+
+EXIT STATUS: 1

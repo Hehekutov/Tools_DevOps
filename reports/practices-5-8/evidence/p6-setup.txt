@@ -1,0 +1,77 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+rsync is already the newest version (3.2.7-1ubuntu1.5).
+openssl is already the newest version (3.0.13-0ubuntu3.16).
+openssl set to manually installed.
+The following additional packages will be installed:
+  nginx-common
+Suggested packages:
+  fcgiwrap nginx-doc ssl-cert
+The following NEW packages will be installed:
+  nginx nginx-common
+0 upgraded, 2 newly installed, 0 to remove and 1 not upgraded.
+Need to get 570 kB of archives.
+After this operation, 1,602 kB of additional disk space will be used.
+Get:1 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 nginx-common all 1.24.0-2ubuntu7.18 [45.1 kB]
+Get:2 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 nginx amd64 1.24.0-2ubuntu7.18 [525 kB]
+Preconfiguring packages ...
+Fetched 570 kB in 1s (397 kB/s)
+Selecting previously unselected package nginx-common.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 88404 files and directories currently installed.)
+Preparing to unpack .../nginx-common_1.24.0-2ubuntu7.18_all.deb ...
+Unpacking nginx-common (1.24.0-2ubuntu7.18) ...
+Selecting previously unselected package nginx.
+Preparing to unpack .../nginx_1.24.0-2ubuntu7.18_amd64.deb ...
+Unpacking nginx (1.24.0-2ubuntu7.18) ...
+Setting up nginx-common (1.24.0-2ubuntu7.18) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /usr/lib/systemd/system/nginx.service.
+Setting up nginx (1.24.0-2ubuntu7.18) ...
+ * Upgrading binary nginx
+   ...done.
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for ufw (0.36.2-6) ...
+USER         PID    PPID CMD
+root        1941       1 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+www-data    1943    1941 nginx: worker process
+f: /var/www/devops-site/index.html
+drwxr-xr-x root   root   /
+drwxr-xr-x root   root   var
+drwxr-xr-x root   root   www
+drwxr-xr-x devops devops devops-site
+-rw-r--r-- devops devops index.html
+<h1>devops.local: placeholder</h1>
+-rw-r--r-- 1 root root 1155 Oct 22 21:17 /etc/ssl/certs/devops.crt
+-rw------- 1 root root 1704 Oct 22 21:17 /etc/ssl/private/devops.key
+Certificate readable by www-data
+Private key unreadable by www-data
+LISTEN 0      511          0.0.0.0:80        0.0.0.0:*    users:(("nginx",pid=2160,fd=5),("nginx",pid=1943,fd=5),("nginx",pid=1941,fd=5))
+LISTEN 0      511          0.0.0.0:443       0.0.0.0:*    users:(("nginx",pid=2160,fd=13),("nginx",pid=1941,fd=13))                      
+LISTEN 0      511             [::]:80           [::]:*    users:(("nginx",pid=2160,fd=6),("nginx",pid=1943,fd=6),("nginx",pid=1941,fd=6))
+LISTEN 0      511             [::]:443          [::]:*    users:(("nginx",pid=2160,fd=14),("nginx",pid=1941,fd=14))                      
+subject=CN = devops.local
+issuer=CN = devops.local
+notBefore=Oct 22 21:17:14 2026 GMT
+notAfter=Oct 22 21:17:14 2027 GMT
+X509v3 Subject Alternative Name: 
+    DNS:devops.local
+
+STDERR
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+Synchronizing state of nginx.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable nginx
+touch: cannot touch '/var/www/devops-site/test.html': Permission denied
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+cat: /etc/ssl/private/devops.key: Permission denied
+
+EXIT STATUS: 0

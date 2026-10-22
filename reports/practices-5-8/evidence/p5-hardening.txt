@@ -1,0 +1,47 @@
+port 2222
+maxauthtries 3
+permitrootlogin no
+passwordauthentication no
+kbdinteractiveauthentication no
+allowusers devops
+LISTEN 0      128          0.0.0.0:2222      0.0.0.0:*    users:(("sshd",pid=1068,fd=3))           
+LISTEN 0      128             [::]:2222         [::]:*    users:(("sshd",pid=1068,fd=4))           
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+Default outgoing policy changed to 'allow'
+(be sure to update your rules accordingly)
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Firewall is active and enabled on system startup
+Rule deleted
+Rule deleted (v6)
+Rule added
+Rule added (v6)
+Logging enabled
+Status: active
+Logging: on (medium)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+80/tcp                     ALLOW IN    Anywhere                   # HTTP
+443/tcp                    ALLOW IN    Anywhere                   # HTTPS
+2222/tcp                   LIMIT IN    Anywhere                   # SSH rate-limited
+80/tcp (v6)                ALLOW IN    Anywhere (v6)              # HTTP
+443/tcp (v6)               ALLOW IN    Anywhere (v6)              # HTTPS
+2222/tcp (v6)              LIMIT IN    Anywhere (v6)              # SSH rate-limited
+
+devops-vm.devops.local
+
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+Removed "/etc/systemd/system/ssh.service.requires/ssh.socket".
+Removed "/etc/systemd/system/sockets.target.wants/ssh.socket".
+Synchronizing state of ssh.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable ssh
+Created symlink /etc/systemd/system/sshd.service → /usr/lib/systemd/system/ssh.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/ssh.service → /usr/lib/systemd/system/ssh.service.

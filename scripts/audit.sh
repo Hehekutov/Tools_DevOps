@@ -39,7 +39,8 @@ if [[ -f /home/devops/app/docker-compose.yml ]]; then
   health=$(sudo docker inspect -f '{{.State.Health.Status}}' "$dbid" 2>/dev/null || true)
   check 'Database healthy' healthy "$health"
   appaddr=$(sudo docker compose --project-directory /home/devops/app port app 5000 2>/dev/null)
-  dbaddr=$(sudo docker compose --project-directory /home/devops/app port db 5432 2>/dev/null || true)
+  # Compose v5 may print :0 for an unpublished port. Inspect real bindings instead.
+  dbaddr=$(sudo docker inspect -f '{{range (index .NetworkSettings.Ports "5432/tcp")}}{{.HostIp}}:{{.HostPort}}{{end}}' "$dbid" 2>/dev/null || true)
   exposed=$(ss -H -tln | awk '$4 ~ /:(5000|5432)$/ && $4 !~ /^127[.]0[.]0[.]1:/ {print $4}')
   check 'App bound to loopback and database unpublished' yes "$([[ "$appaddr" == '127.0.0.1:5000' && -z "$dbaddr" && -z "$exposed" ]] && echo yes || echo no)"
   check 'Environment file mode' 600 "$(stat -c '%a' /home/devops/app/.env)"

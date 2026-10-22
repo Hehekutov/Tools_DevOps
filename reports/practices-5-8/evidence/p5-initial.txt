@@ -1,0 +1,24 @@
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.3 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+uid=1000(hehekutov09) gid=1000(hehekutov09) groups=1000(hehekutov09),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),101(lxd)
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp0s3           UP             10.0.2.15/24 metric 100 fd17:625c:f037:2:a00:27ff:fe3a:2ab3/64 fe80::a00:27ff:fe3a:2ab3/64 
+enp0s8           UP             192.168.56.101/24 metric 100 fe80::a00:27ff:fe8d:8a98/64 
+status: disabled
+
+STDERR
+2026-10-22 20:58:34,524 - util.py[WARNING]: REDACTED config part /etc/cloud/cloud.cfg.d/99-installer.cfg, insufficient permissions
+2026-10-22 20:58:34,525 - util.py[WARNING]: REDACTED config part /etc/cloud/cloud.cfg.d/90-installer-network.cfg, insufficient permissions
+
+EXIT STATUS: 0

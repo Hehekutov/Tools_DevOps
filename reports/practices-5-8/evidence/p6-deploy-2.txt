@@ -1,0 +1,10 @@
+SCENARIO: committed update
+sending incremental file list
+index.html
+
+sent 452 bytes  received 48 bytes  1,000.00 bytes/sec
+total size is 542  speedup is 1.08
+Deployed commit ae472a6
+
+
+EXIT STATUS: 0

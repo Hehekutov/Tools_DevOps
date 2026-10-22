@@ -1,0 +1,22 @@
++ ps -o user,pid,ppid,cmd -C nginx
+USER         PID    PPID CMD
+root        3028       1 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+www-data    3029    3028 nginx: worker process
++ namei -l /var/www/devops-site/index.html
+f: /var/www/devops-site/index.html
+drwxr-xr-x root   root   /
+drwxr-xr-x root   root   var
+drwxr-xr-x root   root   www
+drwxr-xr-x devops devops devops-site
+-rw-r--r-- devops devops index.html
++ sudo -u www-data cat /var/www/devops-site/index.html
+<!DOCTYPE html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>DevOps Course 2026</title></head>
+<body>
+<h1>DevOps Course 2026</h1>
+<p>Студент: Кудояров Денис Рустемович, группа ЭФБО-18-24</p>
+<p>Содержимое доставлено средствами rsync. Версия 2.</p>
+</body></html>
++ sudo -u www-data touch /var/www/devops-site/test.html
+touch: cannot touch '/var/www/devops-site/test.html': Permission denied

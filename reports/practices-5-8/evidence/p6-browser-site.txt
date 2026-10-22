@@ -1,0 +1,10 @@
+Requested: http://devops.local/
+Final URL: https://devops.local/
+HTTP status: 200
+Title: DevOps Course 2026
+
+DevOps Course 2026
+
+Студент: Кудояров Денис Рустемович, группа ЭФБО-18-24
+
+Содержимое доставлено средствами rsync. Версия 2.

@@ -12,7 +12,7 @@ def connect(user=None, port=2222):
     client=paramiko.SSHClient()
     known=Path(tempfile.gettempdir())/'codex-devops-known-hosts'
     if known.exists(): client.load_host_keys(str(known))
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.set_missing_host_key_policy(paramiko.RejectPolicy())
     username=user or auth['user']
     kwargs={'password':auth['password'],'key_filename':str(Path.home()/'.ssh/devops_vm')}
     if username in ('devops','ubuntu-server'):

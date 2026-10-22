@@ -110,7 +110,9 @@ def create(n,spec):
     for text in spec['sources']:para(d,text)
     for appendix in spec.get('appendices',[]):
         d.add_page_break();d.add_heading(appendix['title'],level=1)
-        path=ROOT/appendix['file'];code(d,path.read_text(encoding='utf-8'))
+        path=ROOT/appendix['file'];body=path.read_text(encoding='utf-8')
+        if 'start' in appendix:body=body.split(appendix['start'],1)[-1]
+        code(d,body)
     d.core_properties.author='Кудояров Денис Рустемович'
     d.core_properties.title=f'Практическая работа {n} {spec["title"]}'
     path=OUT/f'Практическая работа {n}.docx';d.save(path);print(path)

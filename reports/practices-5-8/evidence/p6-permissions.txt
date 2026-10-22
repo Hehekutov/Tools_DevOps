@@ -1,0 +1,28 @@
+FILE MODE 600
+403
+2026/10/22 21:26:55 [error] 3029#3029: *17 open() "/var/www/devops-site/index.html" failed (13: Permission denied), client: 127.0.0.1, server: devops.local, request: "GET / HTTP/1.1", host: "devops.local"
+DIRECTORY PERMISSION MATRIX
+mode=755 HTTP=200
+404.html
+index.html
+mode=750 HTTP=403
+mode=744 HTTP=403
+404.html
+index.html
+mode=711 HTTP=200
+2026/10/22 21:26:55 [error] 3029#3029: *17 open() "/var/www/devops-site/index.html" failed (13: Permission denied), client: 127.0.0.1, server: devops.local, request: "GET / HTTP/1.1", host: "devops.local"
+2026/10/22 21:26:55 [error] 3029#3029: *19 "/var/www/devops-site/index.html" is forbidden (13: Permission denied), client: 127.0.0.1, server: devops.local, request: "GET / HTTP/1.1", host: "devops.local"
+2026/10/22 21:26:55 [error] 3029#3029: *20 "/var/www/devops-site/index.html" is forbidden (13: Permission denied), client: 127.0.0.1, server: devops.local, request: "GET / HTTP/1.1", host: "devops.local"
+INSECURE CONTENT PERMISSIONS
+/var/www/devops-site/index.html
+<h1>defaced</h1>
+Content and mode will be restored by deploy.sh from the client
+
+STDERR
+cat: /var/www/devops-site/index.html: Permission denied
+ls: cannot open directory '/var/www/devops-site': Permission denied
+cat: /var/www/devops-site/index.html: Permission denied
+cat: /var/www/devops-site/index.html: Permission denied
+ls: cannot open directory '/var/www/devops-site': Permission denied
+
+EXIT STATUS: 0

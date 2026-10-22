@@ -93,3 +93,94 @@ PasswordAuthentication yes в более ранних файлах закомм�
 запускается от root с предварительно доставленным /tmp/devops_vm.pub. Установка
 обновлений относится к первичной подготовке, а при восстановлении актуального
 снимка повторная загрузка обновлений не нужна.
+
+## 8. Веб-сервер
+
+Пакет nginx из репозитория Ubuntu. Конфигурация /etc/nginx/sites-available/devops-site,
+активирующая ссылка /etc/nginx/sites-enabled/devops-site. Ссылка default отключена.
+Каталог /var/www/devops-site принадлежит devops:devops; каталоги 755, файлы 644.
+www-data читает опубликованные файлы и не может изменять их.
+
+Сертификат /etc/ssl/certs/devops.crt, права 644. Закрытый ключ
+/etc/ssl/private/devops.key, владелец root, права 600. Создание:
+
+```bash
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout /etc/ssl/private/devops.key -out /etc/ssl/certs/devops.crt \
+  -subj '/CN=devops.local' -addext 'subjectAltName=DNS:devops.local'
+```
+
+Разрешены TLSv1.2 и TLSv1.3. HTTP возвращает 301 с Location https://$host$request_uri.
+HSTS для самоподписанного учебного сертификата не задаётся. Публичный сертификат
+скопирован на компьютер в ~/devops.crt по проверенному SSH-соединению.
+Применение изменений: `sudo nginx -t && sudo systemctl reload nginx`.
+Журналы HTTPS: /var/log/nginx/devops-site.access.log и devops-site.error.log.
+HTTP-перенаправления регистрируются в стандартном /var/log/nginx/access.log.
+
+Доставка: scripts/deploy.sh, предварительная проверка scripts/deploy.sh --dry-run.
+На данном Windows-хосте используется изолированный MSYS2-клиент rsync,
+запускаемый lab_tools/run_client.py. Исходный Git и существующие дистрибутивы WSL
+не изменены. lab_tools/client-env.sh задаёт согласованный SSH-клиент и путь
+к открытому сертификату; параметры по умолчанию deploy.sh подходят обычному Linux.
+Один запуск deploy.sh открывает одно SSH-соединение для rsync; проверка HTTPS
+выполняется отдельно через curl. Перед доставкой проверяются чистота Git и index.html.
+
+В AmneziaVPN адрес 192.168.56.101 исключён из туннеля. Прямой Host-only доступ
+проверен по ICMP и HTTPS. Временные правила NAT для HTTP и HTTPS после диагностики
+удалены; постоянный проброс NAT используется только для SSH.
+
+## 9. Контейнеризация
+
+Docker Engine Community 29.9.2 и плагин Compose v5.6.1 установлены из официального
+APT-репозитория https://download.docker.com/linux/ubuntu (noble, stable), ключ
+/etc/apt/keyrings/docker.asc, источник /etc/apt/sources.list.d/docker.sources.
+Служба docker включена и активна. Пользователь devops входит в группу docker;
+новое членство действует в новой SSH-сессии. Доступ к docker.sock предоставляет
+административные возможности, поэтому в группу включается только администратор.
+
+Проект находится в /home/devops/app. Доставка с компьютера:
+
+```bash
+rsync -avz --delete --exclude=.env --chmod=D755,F644 --dry-run app/ devops:app/
+rsync -avz --delete --exclude=.env --chmod=D755,F644 app/ devops:app/
+```
+
+Файл /home/devops/app/.env создаётся только на сервере из .env.example,
+пароль заменяется результатом `openssl rand -hex 16`, права 600, владелец devops.
+Не копировать этот файл на компьютер и не добавлять в Git. .dockerignore исключает
+.env из контекста сборки. Команды запуска: `cd ~/app && docker compose up -d --build --wait`.
+
+Образ devops-app:1.0 запускает Gunicorn от пользователя app (uid 999).
+PostgreSQL postgres:16-alpine использует именованный том app_db_data и сеть
+app_backend. Имя db разрешается встроенным DNS этой сети. Приложение ждёт healthcheck
+базы pg_isready. `docker compose down` сохраняет том; `down -v` удаляет данные.
+Проверка с удалением выполнена только на созданной учебной базе.
+
+Публикуется только 127.0.0.1:5000 → 5000 приложения. Порт 5432 базы не публикуется.
+Compose v5.6.1 в команде `port db 5432` выводил :0 для отсутствующей публикации;
+проверка аудита использует реальные NetworkSettings.Ports из docker inspect.
+
+В HTTPS-блок Nginx добавлено:
+
+```nginx
+location /app/ {
+    proxy_pass http://127.0.0.1:5000/;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+```
+
+Проверить синтаксис и применить: `sudo nginx -t && sudo systemctl reload nginx`.
+Статический ресурс / сохранён. /app/ показывает счётчик, /app/health отвечает ok.
+На Windows используются curl --cacert ~/devops.crt и обычное имя devops.local.
+На самой VM в /etc/hosts добавлен devops.local как псевдоним 127.0.0.1 для
+локальных диагностических запросов; полное имя узла сохранено.
+
+Проверка состояния: `docker compose ps`, `docker compose exec -T --interactive=false app id`,
+`sudo ss -tlnp`, `sudo bash ~/devops-course-2026/scripts/audit.sh`.
+Ожидаются healthy у db, только loopback у 5000, отсутствие слушателя 5432,
+14 успешных проверок аудита и код 0. При публикации 5000 на всех интерфейсах
+аудит возвращает 1; после опыта возвращена безопасная конфигурация.
+Снимок 05-docker-compose сохраняет проект, базу и Nginx для следующей работы.

@@ -1,0 +1,16 @@
++ bash /tmp/audit.sh
+Audit: devops-vm.devops.local 2026-10-22T21:13:13+00:00
+[1] SSH
+[OK] Root login prohibited
+[OK] Password authentication disabled
+[OK] Nonstandard SSH port
+[OK] MaxAuthTries
+[2] Firewall
+[OK] UFW active
+[OK] Default deny incoming
+[3] Accounts
+  hehekutov09 uid=1000
+  devops uid=1001
+Passed: 6; failed: 0
++ echo audit_exit=0
+audit_exit=0

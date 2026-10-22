@@ -1,0 +1,4 @@
+da7e4c8d813d4acbc40cf711b2b25d17b953d01435f674393bb426d0d895b34a
+DNAT       6    --  0.0.0.0/0            0.0.0.0/0            tcp dpt:5001 to:172.17.0.2:5000
+
+EXIT STATUS: 0

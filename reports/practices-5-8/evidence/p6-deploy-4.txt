@@ -1,0 +1,11 @@
+SCENARIO: nginx stopped
+sending incremental file list
+index.html
+
+sent 164 bytes  received 48 bytes  141.33 bytes/sec
+total size is 542  speedup is 2.56
+curl: (7) Failed to connect to devops.local:443 after 2019 ms: Could not connect to server
+HTTPS verification failed
+
+
+EXIT STATUS: 1

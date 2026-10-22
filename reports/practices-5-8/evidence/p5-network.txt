@@ -1,0 +1,11 @@
++ hostname -f
+devops-vm.devops.local
++ ip -brief address
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp0s3           UP             10.0.2.15/24 metric 100 fd17:625c:f037:2:a00:27ff:fe3a:2ab3/64 fe80::a00:27ff:fe3a:2ab3/64 
+enp0s8           UP             192.168.56.101/24 metric 100 fe80::a00:27ff:fe8d:8a98/64 
++ groups devops
+devops : devops sudo
++ stat -c '%a %n' /home/devops/.ssh /home/devops/.ssh/authorized_keys
+700 /home/devops/.ssh
+600 /home/devops/.ssh/authorized_keys

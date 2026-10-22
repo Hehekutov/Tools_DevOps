@@ -1,0 +1,32 @@
+[
+  {
+    "scenario": "dry-run",
+    "expected": 0,
+    "actual": 0
+  },
+  {
+    "scenario": "committed update",
+    "expected": 0,
+    "actual": 0
+  },
+  {
+    "scenario": "uncommitted update",
+    "expected": 1,
+    "actual": 1
+  },
+  {
+    "scenario": "nginx stopped",
+    "expected": 1,
+    "actual": 1
+  },
+  {
+    "scenario": "committed missing index",
+    "expected": 1,
+    "actual": 1
+  },
+  {
+    "scenario": "restored final state",
+    "expected": 0,
+    "actual": 0
+  }
+]
