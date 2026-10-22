@@ -1,0 +1,3 @@
+uid=1001(devops) gid=1001(devops) groups=1001(devops),27(sudo)
+700 /home/devops/.ssh
+600 /home/devops/.ssh/authorized_keys

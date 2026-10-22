@@ -1,0 +1,12 @@
++ ls -l /etc/ssl/private/devops.key /etc/ssl/certs/devops.crt
+-rw-r--r-- 1 root root 1155 Oct 22 21:17 /etc/ssl/certs/devops.crt
+-rw------- 1 root root 1704 Oct 22 21:17 /etc/ssl/private/devops.key
++ openssl x509 -in /etc/ssl/certs/devops.crt -noout -subject -issuer -dates -ext subjectAltName
+subject=CN = devops.local
+issuer=CN = devops.local
+notBefore=Oct 22 21:17:14 2026 GMT
+notAfter=Oct 22 21:17:14 2027 GMT
+X509v3 Subject Alternative Name: 
+    DNS:devops.local
++ sudo -u www-data cat /etc/ssl/private/devops.key
+cat: /etc/ssl/private/devops.key: Permission denied

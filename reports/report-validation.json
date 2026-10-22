@@ -1,0 +1,17 @@
+{
+  "5": {
+    "pages": 9,
+    "questions": 14,
+    "text_and_secret_checks": "passed"
+  },
+  "6": {
+    "pages": 15,
+    "questions": 14,
+    "text_and_secret_checks": "passed"
+  },
+  "7": {
+    "pages": 15,
+    "questions": 8,
+    "text_and_secret_checks": "passed"
+  }
+}

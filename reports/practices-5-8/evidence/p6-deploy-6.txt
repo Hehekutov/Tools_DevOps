@@ -1,0 +1,10 @@
+SCENARIO: restored final state
+sending incremental file list
+./
+
+sent 130 bytes  received 26 bytes  104.00 bytes/sec
+total size is 542  speedup is 3.47
+Deployed commit a3e4367
+
+
+EXIT STATUS: 0

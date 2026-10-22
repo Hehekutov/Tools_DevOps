@@ -1,0 +1,3 @@
+exposed
+
+EXIT STATUS: 0

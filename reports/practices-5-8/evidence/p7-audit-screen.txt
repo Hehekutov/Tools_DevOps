@@ -1,0 +1,26 @@
++ bash /tmp/audit.sh
+Audit: devops-vm.devops.local 2026-10-22T21:38:51+00:00
+[1] SSH
+[OK] Root login prohibited
+[OK] Password authentication disabled
+[OK] Nonstandard SSH port
+[OK] MaxAuthTries
+[2] Firewall
+[OK] UFW active
+[OK] Default deny incoming
+[3] Accounts
+  hehekutov09 uid=1000
+  devops uid=1001
+[4] Web server
+[OK] Nginx active
+[OK] Nginx syntax
+[OK] Certificate validity threshold
+[OK] No world writable content and key mode 600
+[5] Containers
+[OK] Docker active
+[OK] Database healthy
+[OK] App bound to loopback and database unpublished
+[OK] Environment file mode
+Passed: 14; failed: 0
++ echo audit_exit=0
+audit_exit=0

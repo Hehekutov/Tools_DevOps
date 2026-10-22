@@ -1,0 +1,25 @@
+APP_PORT
+127.0.0.1:5000
+DB_PORT
+:0
+LISTEN 0      4096       127.0.0.1:5000 0.0.0.0:*
+LISTEN 0      4096   127.0.0.53%lo:53   0.0.0.0:*
+LISTEN 0      511          0.0.0.0:443  0.0.0.0:*
+LISTEN 0      511          0.0.0.0:80   0.0.0.0:*
+LISTEN 0      128          0.0.0.0:2222 0.0.0.0:*
+LISTEN 0      4096      127.0.0.54:53   0.0.0.0:*
+LISTEN 0      511             [::]:443     [::]:*
+LISTEN 0      511             [::]:80      [::]:*
+LISTEN 0      128             [::]:2222    [::]:*
+Hello from Docker, Kudoyarov! Visits: 3
+Hello from Docker, Kudoyarov! Visits: 4
+Hello from Docker, Kudoyarov! Visits: 5
+NETWORK ID     NAME          DRIVER    SCOPE
+306290f5e1f5   app_backend   bridge    local
+6b2177ffa958   bridge        bridge    local
+d15a6fd868b4   host          host      local
+3257067ed4d2   none          null      local
+172.18.0.2      db
+END
+
+EXIT STATUS: 0

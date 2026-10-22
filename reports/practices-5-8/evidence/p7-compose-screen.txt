@@ -1,0 +1,23 @@
++ cd /home/devops/app
++ docker compose ps
+NAME        IMAGE                COMMAND                  SERVICE   CREATED              STATUS                   PORTS
+app-app-1   devops-app:1.0       "gunicorn --bind 0.0…"   app       About a minute ago   Up About a minute        127.0.0.1:5000->5000/tcp
+app-db-1    postgres:16-alpine   "docker-entrypoint.s…"   db        3 minutes ago        Up 3 minutes (healthy)   5432/tcp
++ docker compose exec -T --interactive=false app id
+uid=999(app) gid=999(app) groups=999(app)
++ for i in 1 2 3
++ curl -fsS http://127.0.0.1:5000/
+Hello from Docker, Kudoyarov! Visits: 7
++ for i in 1 2 3
++ curl -fsS http://127.0.0.1:5000/
+Hello from Docker, Kudoyarov! Visits: 8
++ for i in 1 2 3
++ curl -fsS http://127.0.0.1:5000/
+Hello from Docker, Kudoyarov! Visits: 9
++ docker compose exec -T --interactive=false app getent hosts db
+172.18.0.2      db
++ ss -tln
++ grep -E ':(5000|5432)\b'
+LISTEN 0      4096       127.0.0.1:5000      0.0.0.0:*          
++ stat -c '%a %U:%G %n' .env
+600 devops:devops .env

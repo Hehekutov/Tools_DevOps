@@ -1,0 +1,6 @@
+2026/10/22 21:26:55 [error] 3029#3029: *17 open() "/var/www/devops-site/index.html" failed (13: Permission denied), client: 127.0.0.1, server: devops.local, request: "GET / HTTP/1.1", host: "devops.local"
+2026/10/22 21:26:55 [error] 3029#3029: *19 "/var/www/devops-site/index.html" is forbidden (13: Permission denied), client: 127.0.0.1, server: devops.local, request: "GET / HTTP/1.1", host: "devops.local"
+2026/10/22 21:26:55 [error] 3029#3029: *20 "/var/www/devops-site/index.html" is forbidden (13: Permission denied), client: 127.0.0.1, server: devops.local, request: "GET / HTTP/1.1", host: "devops.local"
+2026/10/22 21:36:45 [error] 4848#4848: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: devops.local, request: "HEAD /app/ HTTP/1.1", upstream: "http://127.0.0.1:5000/", host: "devops.local"
+
+EXIT STATUS: 0

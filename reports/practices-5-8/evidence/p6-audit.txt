@@ -1,0 +1,104 @@
+NORMAL
+Audit: devops-vm.devops.local 2026-10-22T21:26:57+00:00
+[1] SSH
+[OK] Root login prohibited
+[OK] Password authentication disabled
+[OK] Nonstandard SSH port
+[OK] MaxAuthTries
+[2] Firewall
+[OK] UFW active
+[OK] Default deny incoming
+[3] Accounts
+  hehekutov09 uid=1000
+  devops uid=1001
+[4] Web server
+[OK] Nginx active
+[OK] Nginx syntax
+[OK] Certificate validity threshold
+[OK] No world writable content and key mode 600
+Passed: 10; failed: 0
+audit_exit=0
+INVALID_VALIDITY_THRESHOLD
+Audit: devops-vm.devops.local 2026-10-22T21:26:58+00:00
+[1] SSH
+[OK] Root login prohibited
+[OK] Password authentication disabled
+[OK] Nonstandard SSH port
+[OK] MaxAuthTries
+[2] Firewall
+[OK] UFW active
+[OK] Default deny incoming
+[3] Accounts
+  hehekutov09 uid=1000
+  devops uid=1001
+[4] Web server
+[OK] Nginx active
+[OK] Nginx syntax
+[FAIL] Certificate validity threshold expected=0 actual=1
+[OK] No world writable content and key mode 600
+Passed: 9; failed: 1
+audit_exit=1
+WORLD_WRITABLE_FILE
+Audit: devops-vm.devops.local 2026-10-22T21:26:58+00:00
+[1] SSH
+[OK] Root login prohibited
+[OK] Password authentication disabled
+[OK] Nonstandard SSH port
+[OK] MaxAuthTries
+[2] Firewall
+[OK] UFW active
+[OK] Default deny incoming
+[3] Accounts
+  hehekutov09 uid=1000
+  devops uid=1001
+[4] Web server
+[OK] Nginx active
+[OK] Nginx syntax
+[OK] Certificate validity threshold
+[FAIL] No world writable content and key mode 600 expected=yes actual=no
+Passed: 9; failed: 1
+audit_exit=1
+RESTORED
+Audit: devops-vm.devops.local 2026-10-22T21:26:59+00:00
+[1] SSH
+[OK] Root login prohibited
+[OK] Password authentication disabled
+[OK] Nonstandard SSH port
+[OK] MaxAuthTries
+[2] Firewall
+[OK] UFW active
+[OK] Default deny incoming
+[3] Accounts
+  hehekutov09 uid=1000
+  devops uid=1001
+[4] Web server
+[OK] Nginx active
+[OK] Nginx syntax
+[OK] Certificate validity threshold
+[OK] No world writable content and key mode 600
+Passed: 10; failed: 0
+audit_exit=0
+total 16
+drwxr-xr-x 2 devops devops 4096 Oct 22 21:25 .
+drwxr-xr-x 4 root   root   4096 Oct 22 21:17 ..
+-rw-r--r-- 1 devops devops  196 Oct 22 21:02 404.html
+-rw-r--r-- 1 devops devops  346 Oct 22 21:25 index.html
+LOG_SUMMARY
+     16 200
+      8 404
+      3 403
+192.168.56.1 - - [22/Oct/2026:21:26:09 +0000] "GET /admin HTTP/1.1" 404 196 "-" "curl/8.21.0"
+192.168.56.1 - - [22/Oct/2026:21:26:09 +0000] "GET /wp-login.php HTTP/1.1" 404 196 "-" "curl/8.21.0"
+192.168.56.1 - - [22/Oct/2026:21:26:09 +0000] "GET /.env HTTP/1.1" 404 196 "-" "curl/8.21.0"
+127.0.0.1 - - [22/Oct/2026:21:26:55 +0000] "GET / HTTP/1.1" 403 162 "-" "curl/8.5.0"
+127.0.0.1 - - [22/Oct/2026:21:26:55 +0000] "GET / HTTP/1.1" 200 346 "-" "curl/8.5.0"
+127.0.0.1 - - [22/Oct/2026:21:26:55 +0000] "GET / HTTP/1.1" 403 162 "-" "curl/8.5.0"
+127.0.0.1 - - [22/Oct/2026:21:26:55 +0000] "GET / HTTP/1.1" 403 162 "-" "curl/8.5.0"
+127.0.0.1 - - [22/Oct/2026:21:26:55 +0000] "GET / HTTP/1.1" 200 346 "-" "curl/8.5.0"
+127.0.0.1 - - [22/Oct/2026:21:26:55 +0000] "GET / HTTP/1.1" 200 17 "-" "curl/8.5.0"
+192.168.56.1 - - [22/Oct/2026:21:26:56 +0000] "GET / HTTP/1.1" 200 346 "-" "curl/8.21.0"
+BLOCKED_TRAFFIC
+Oct 22 21:26:03 devops-vm kernel: [UFW BLOCK] IN=enp0s8 OUT= MAC=08:00:27:8d:8a:98:0a:00:27:00:00:30:08:00 SRC=192.168.56.1 DST=192.168.56.101 LEN=60 TOS=0x00 PREC=0x00 TTL=128 ID=59265 DF PROTO=TCP SPT=49938 DPT=8080 WINDOW=65535 RES=0x00 SYN URGP=0 
+Oct 22 21:26:04 devops-vm kernel: [UFW BLOCK] IN=enp0s8 OUT= MAC=08:00:27:8d:8a:98:0a:00:27:00:00:30:08:00 SRC=192.168.56.1 DST=192.168.56.101 LEN=60 TOS=0x00 PREC=0x00 TTL=128 ID=59266 DF PROTO=TCP SPT=49938 DPT=8080 WINDOW=65535 RES=0x00 SYN URGP=0 
+
+touch: cannot touch '/var/www/devops-site/index.html': Permission denied

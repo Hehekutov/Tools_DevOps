@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>DevOps Course 2026</title></head>
+<body>
+<h1>DevOps Course 2026</h1>
+<p>Студент: Кудояров Денис Рустемович, группа ЭФБО-18-24</p>
+<p>Содержимое доставлено средствами rsync. Версия 2.</p>
+</body></html>
+
+* Added devops.local:443:127.0.0.1 to DNS cache
+* Hostname devops.local was found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1:443...
+* Connected to devops.local (127.0.0.1) port 443
+* ALPN: curl offers h2,http/1.1
+} [5 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+} [512 bytes data]
+*  CAfile: /etc/ssl/certs/devops.crt
+*  CApath: /etc/ssl/certs
+{ [5 bytes data]
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+{ [25 bytes data]
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+{ [825 bytes data]
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384 / X25519 / RSASSA-PSS
+* ALPN: server accepted http/1.1
+* Server certificate:
+*  subject: CN=devops.local
+*  start date: Oct 22 21:17:14 2026 GMT
+*  expire date: Oct 22 21:17:14 2027 GMT
+*  subjectAltName: host "devops.local" matched cert's "devops.local"
+*  issuer: CN=devops.local
+*  SSL certificate verify ok.
+*   Certificate level 0: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+* using HTTP/1.x
+} [5 bytes data]
+> GET / HTTP/1.1
+> Host: devops.local
+> User-Agent: curl/8.5.0
+> Accept: */*
+> 
+{ [5 bytes data]
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+{ [281 bytes data]
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+{ [281 bytes data]
+* old SSL session ID is stale, removing
+{ [5 bytes data]
+< HTTP/1.1 200 OK
+< Server: nginx/1.24.0 (Ubuntu)
+< Date: Thu, 22 Oct 2026 21:26:59 GMT
+< Content-Type: text/html
+< Content-Length: 346
+< Last-Modified: Thu, 22 Oct 2026 21:25:36 GMT
+< Connection: keep-alive
+< ETag: "6ada7f50-15a"
+< Accept-Ranges: bytes
+< 
+{ [346 bytes data]
+100   346  100   346    0     0  25422      0 --:--:-- --:--:-- --:--:-- 26615
+* Connection #0 to host devops.local left intact

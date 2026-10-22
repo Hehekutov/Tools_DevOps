@@ -1,0 +1,72 @@
+IMAGE          CREATED              CREATED BY                                      SIZE      COMMENT
+e49ce8b25bdb   1 second ago         CMD ["gunicorn" "--bind" "0.0.0.0:5000" "--a…   0B        buildkit.dockerfile.v0
+<missing>      1 second ago         EXPOSE [5000/tcp]                               0B        buildkit.dockerfile.v0
+<missing>      1 second ago         USER app                                        0B        buildkit.dockerfile.v0
+<missing>      1 second ago         COPY app.py . # buildkit                        12.3kB    buildkit.dockerfile.v0
+<missing>      About a minute ago   RUN /bin/sh -c pip install --no-cache-dir -r…   25.1MB    buildkit.dockerfile.v0
+<missing>      About a minute ago   COPY requirements.txt . # buildkit              12.3kB    buildkit.dockerfile.v0
+<missing>      About a minute ago   WORKDIR /app                                    8.19kB    buildkit.dockerfile.v0
+<missing>      About a minute ago   RUN /bin/sh -c useradd --system --no-create-…   41kB      buildkit.dockerfile.v0
+<missing>      44 hours ago         CMD ["python3"]                                 0B        buildkit.dockerfile.v0
+<missing>      44 hours ago         RUN /bin/sh -c set -eux;  for src in idle3 p…   16.4kB    buildkit.dockerfile.v0
+<missing>      44 hours ago         RUN /bin/sh -c set -eux;   savedAptMark="$(a…   41.4MB    buildkit.dockerfile.v0
+<missing>      45 hours ago         ENV PYTHON_SHA256=c2c4321961fab0fb999d66e0ce…   0B        buildkit.dockerfile.v0
+<missing>      45 hours ago         ENV PYTHON_VERSION=3.12.15                      0B        buildkit.dockerfile.v0
+<missing>      45 hours ago         ENV GPG_KEY=7169605F62C751356D054A26A821E680…   0B        buildkit.dockerfile.v0
+<missing>      45 hours ago         RUN /bin/sh -c set -eux;  apt-get update;  a…   4.92MB    buildkit.dockerfile.v0
+<missing>      45 hours ago         ENV LANG=C.UTF-8                                0B        buildkit.dockerfile.v0
+<missing>      45 hours ago         ENV PATH=/usr/local/bin:/usr/local/sbin:/usr…   0B        buildkit.dockerfile.v0
+<missing>      2 days ago           # debian.sh --arch 'amd64' out/ 'trixie' '@1…   87.7MB    debuerreotype 0.17
+
+STDERR
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 305B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.6s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 64B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 935B done
+#4 DONE 0.1s
+
+#5 [1/6] FROM docker.io/library/python:3.12-slim@sha256:cb33f7f771ecec2ef1225cf39b159591a040391bd73e4c01f00fdfc4c47611d2
+#5 resolve docker.io/library/python:3.12-slim@sha256:cb33f7f771ecec2ef1225cf39b159591a040391bd73e4c01f00fdfc4c47611d2
+#5 resolve docker.io/library/python:3.12-slim@sha256:cb33f7f771ecec2ef1225cf39b159591a040391bd73e4c01f00fdfc4c47611d2 0.1s done
+#5 DONE 0.1s
+
+#6 [2/6] RUN useradd --system --no-create-home app
+#6 CACHED
+
+#7 [3/6] WORKDIR /app
+#7 CACHED
+
+#8 [4/6] COPY requirements.txt .
+#8 CACHED
+
+#9 [5/6] RUN pip install --no-cache-dir -r requirements.txt
+#9 CACHED
+
+#10 [6/6] COPY app.py .
+#10 DONE 0.2s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 0.2s done
+#11 exporting manifest sha256:8196b92beee0185ab7b41fbec7a22269362170d7ebc5aed99f68a6082c8cb695
+#11 exporting manifest sha256:8196b92beee0185ab7b41fbec7a22269362170d7ebc5aed99f68a6082c8cb695 0.0s done
+#11 exporting config sha256:33f70355acacdca4f874aaf73d8375f9c948fb3a78e228bb3243473de48f5e15 0.0s done
+#11 exporting attestation manifest sha256:8d68cc04409b0466d2558dc7083a6168c75e1849849b14b3147e215794181ecb
+#11 exporting attestation manifest sha256:8d68cc04409b0466d2558dc7083a6168c75e1849849b14b3147e215794181ecb 0.0s done
+#11 exporting manifest list sha256:e49ce8b25bdbae38e6b339f01f13d73f39c7991cbb94a32d168a06e7bfefd1ee 0.0s done
+#11 naming to docker.io/library/devops-app:1.0 done
+#11 unpacking to docker.io/library/devops-app:1.0 0.1s done
+#11 DONE 0.5s
+
+EXIT STATUS: 0

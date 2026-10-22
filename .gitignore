@@ -1,3 +1,9 @@
 __pycache__/
 *.py[cod]
 .venv/
+.env
+/tmp/
+/output/
+/reports/practices-5-8/evidence/install*
+/reports/practices-5-8/evidence/boot*
+/reports/practices-5-8/evidence/initial-vm.png

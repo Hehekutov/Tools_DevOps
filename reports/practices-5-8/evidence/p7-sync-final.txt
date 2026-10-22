@@ -1,0 +1,10 @@
+sending incremental file list
+app.py
+
+sent 231 bytes  received 26 bytes  171.33 bytes/sec
+total size is 1,875  speedup is 7.30 (DRY RUN)
+sending incremental file list
+app.py
+
+sent 740 bytes  received 54 bytes  1,588.00 bytes/sec
+total size is 1,875  speedup is 2.36

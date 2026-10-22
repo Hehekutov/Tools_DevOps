@@ -1,0 +1,70 @@
+dff971d40106219f173043c18528eaff61cd68ca85ecd81d11ad99cf714d9a45
+CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS         PORTS                      NAMES
+dff971d40106   devops-app:1.0   "gunicorn --bind 0.0…"   4 seconds ago   Up 3 seconds   127.0.0.1:5000->5000/tcp   app-test
+HTTP/1.1 200 OK
+Server: gunicorn
+Date: Thu, 22 Oct 2026 21:33:45 GMT
+Connection: close
+Content-Type: text/html; charset=utf-8
+Content-Length: 3
+
+ok
+HTTP/1.1 500 INTERNAL SERVER ERROR
+Server: gunicorn
+Date: Thu, 22 Oct 2026 21:33:45 GMT
+Connection: close
+Content-Type: text/html; charset=utf-8
+Content-Length: 265
+
+<!doctype html>
+<html lang=en>
+<title>500 Internal Server Error</title>
+<h1>Internal Server Error</h1>
+<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>
+172.17.0.1 - - [22/Oct/2026:21:33:45 +0000] "GET /health HTTP/1.1" 200 3 "-" "curl/8.5.0"
+172.17.0.1 - - [22/Oct/2026:21:33:45 +0000] "GET / HTTP/1.1" 500 265 "-" "curl/8.5.0"
+uid=999(app) gid=999(app) groups=999(app)
+644 root:root /app/app.py
+app-test
+
+STDERR
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100     3  100     3    0     0    301      0 --:--:-- --:--:-- --:--:--   333
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   265  100   265    0     0  39825      0 --:--:-- --:--:-- --:--:-- 44166
+[2026-10-22 21:33:42 +0000] [1] [INFO] Starting gunicorn 22.0.0
+[2026-10-22 21:33:42 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+[2026-10-22 21:33:42 +0000] [1] [INFO] Using worker: sync
+[2026-10-22 21:33:42 +0000] [7] [INFO] Booting worker with pid: 7
+[2026-10-22 21:33:45,336] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 21, in index
+    conn = get_connection()
+           ^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 8, in get_connection
+    return psycopg2.connect(
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+EXIT STATUS: 0

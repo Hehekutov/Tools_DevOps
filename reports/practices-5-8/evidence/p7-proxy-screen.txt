@@ -1,0 +1,32 @@
++ curl --cacert /etc/ssl/certs/devops.crt -I https://devops.local/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0   346    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 22 Oct 2026 21:38:49 GMT
+Content-Type: text/html
+Content-Length: 346
+Last-Modified: Thu, 22 Oct 2026 21:25:36 GMT
+Connection: keep-alive
+ETag: "6ada7f50-15a"
+Accept-Ranges: bytes
+
++ curl --cacert /etc/ssl/certs/devops.crt -i https://devops.local/app/health
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100     3  100     3    0     0    194      0 --:--:-- --:--:-- --:--:--   200
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 22 Oct 2026 21:38:49 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 3
+Connection: keep-alive
+
+ok
++ curl --cacert /etc/ssl/certs/devops.crt -s https://devops.local/app/
+Hello from Docker, Kudoyarov! Visits: 10
++ docker run --rm devops-app:1.0 sh -c 'test ! -e /app/.env && echo IMAGE_HAS_NO_ENV_FILE'
+IMAGE_HAS_NO_ENV_FILE
++ docker inspect -f '{{json .NetworkSettings.Ports}}' app-db-1
+{"5432/tcp":null}

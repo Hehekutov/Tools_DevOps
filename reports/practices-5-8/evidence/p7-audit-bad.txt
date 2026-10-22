@@ -1,0 +1,41 @@
+LISTEN 0      4096         0.0.0.0:5000      0.0.0.0:*          
+LISTEN 0      4096            [::]:5000         [::]:*          
+Audit: devops-vm.devops.local 2026-10-22T21:37:33+00:00
+[1] SSH
+[OK] Root login prohibited
+[OK] Password authentication disabled
+[OK] Nonstandard SSH port
+[OK] MaxAuthTries
+[2] Firewall
+[OK] UFW active
+[OK] Default deny incoming
+[3] Accounts
+  hehekutov09 uid=1000
+  devops uid=1001
+[4] Web server
+[OK] Nginx active
+[OK] Nginx syntax
+[OK] Certificate validity threshold
+[OK] No world writable content and key mode 600
+[5] Containers
+[OK] Docker active
+[OK] Database healthy
+[FAIL] App bound to loopback and database unpublished expected=yes actual=no
+[OK] Environment file mode
+Passed: 13; failed: 1
+AUDIT_EXIT=1
+
+STDERR
+ Container app-db-1 Running 
+ Container app-app-1 Recreate 
+ Container app-app-1 Recreated 
+ Container app-db-1 Waiting 
+ Container app-db-1 Healthy 
+ Container app-app-1 Starting 
+ Container app-app-1 Started 
+ Container app-db-1 Waiting 
+ Container app-app-1 Waiting 
+ Container app-db-1 Healthy 
+ Container app-app-1 Healthy 
+
+EXIT STATUS: 1

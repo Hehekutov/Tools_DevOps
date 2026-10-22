@@ -1,0 +1,6 @@
+Requested: https://devops.local/app/
+Final URL: https://devops.local/app/
+HTTP status: 200
+Title: 
+
+Hello from Docker, Kudoyarov! Visits: 6

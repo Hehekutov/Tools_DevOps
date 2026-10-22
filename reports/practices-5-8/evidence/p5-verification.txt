@@ -1,0 +1,78 @@
+EFFECTIVE SSH CONFIGURATION
+port 2222
+maxauthtries 3
+permitrootlogin no
+passwordauthentication no
+allowusers devops
+LISTEN 0      128          0.0.0.0:2222      0.0.0.0:*    users:(("sshd",pid=1068,fd=3))           
+LISTEN 0      128             [::]:2222         [::]:*    users:(("sshd",pid=1068,fd=4))           
+700 /home/devops/.ssh
+600 /home/devops/.ssh/authorized_keys
+FIREWALL
+Status: active
+Logging: on (medium)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+80/tcp                     ALLOW IN    Anywhere                   # HTTP
+443/tcp                    ALLOW IN    Anywhere                   # HTTPS
+2222/tcp                   LIMIT IN    Anywhere                   # SSH rate-limited
+80/tcp (v6)                ALLOW IN    Anywhere (v6)              # HTTP
+443/tcp (v6)               ALLOW IN    Anywhere (v6)              # HTTPS
+2222/tcp (v6)              LIMIT IN    Anywhere (v6)              # SSH rate-limited
+
+FQDN
+devops-vm.devops.local
+AUDIT NORMAL CONFIGURATION
+Audit: devops-vm.devops.local 2026-10-22T21:12:28+00:00
+[1] SSH
+[OK] Root login prohibited
+[OK] Password authentication disabled
+[OK] Nonstandard SSH port
+[OK] MaxAuthTries
+[2] Firewall
+[OK] UFW active
+[OK] Default deny incoming
+[3] Accounts
+  hehekutov09 uid=1000
+  devops uid=1001
+Passed: 6; failed: 0
+audit_exit=0
+AUDIT INCORRECT MAXAUTHTRIES
+Audit: devops-vm.devops.local 2026-10-22T21:12:28+00:00
+[1] SSH
+[OK] Root login prohibited
+[OK] Password authentication disabled
+[OK] Nonstandard SSH port
+[FAIL] MaxAuthTries expected=3 actual=10
+[2] Firewall
+[OK] UFW active
+[OK] Default deny incoming
+[3] Accounts
+  hehekutov09 uid=1000
+  devops uid=1001
+Passed: 5; failed: 1
+audit_exit=1
+AUDIT RESTORED CONFIGURATION
+Audit: devops-vm.devops.local 2026-10-22T21:12:28+00:00
+[1] SSH
+[OK] Root login prohibited
+[OK] Password authentication disabled
+[OK] Nonstandard SSH port
+[OK] MaxAuthTries
+[2] Firewall
+[OK] UFW active
+[OK] Default deny incoming
+[3] Accounts
+  hehekutov09 uid=1000
+  devops uid=1001
+Passed: 6; failed: 0
+audit_exit=0
+AUTHENTICATION JOURNAL
+Oct 22 21:12:23 devops-vm sshd[1540]: User root from 10.0.2.2 not allowed because not listed in AllowUsers
+Oct 22 21:12:23 devops-vm sshd[1540]: Connection reset by invalid user root 10.0.2.2 port 56675 [preauth]
+BLOCKED TRAFFIC
+
+EXIT STATUS: 0

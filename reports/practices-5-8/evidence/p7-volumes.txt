@@ -1,0 +1,76 @@
+BEFORE_DOWN
+Hello from Docker, Kudoyarov! Visits: 1
+DRIVER    VOLUME NAME
+local     app_db_data
+AFTER_DOWN
+Hello from Docker, Kudoyarov! Visits: 2
+AFTER_DOWN_V
+Hello from Docker, Kudoyarov! Visits: 1
+DRIVER    VOLUME NAME
+local     app_db_data
+
+STDERR
+ Container app-app-1 Stopping 
+ Container app-app-1 Stopped 
+ Container app-app-1 Removing 
+ Container app-app-1 Removed 
+ Container app-db-1 Stopping 
+ Container app-db-1 Stopped 
+ Container app-db-1 Removing 
+ Container app-db-1 Removed 
+ Network app_backend Removing 
+ Network app_backend Removed 
+ Network app_backend Creating 
+ Network app_backend Creating 
+ Network app_backend Created 
+ Network app_backend Created 
+ Container app-db-1 Creating 
+ Container app-db-1 Created 
+ Container app-app-1 Creating 
+ Container app-app-1 Created 
+ Container app-db-1 Starting 
+ Container app-db-1 Started 
+ Container app-db-1 Waiting 
+ Container app-db-1 Healthy 
+ Container app-app-1 Starting 
+ Container app-app-1 Started 
+ Container app-app-1 Waiting 
+ Container app-db-1 Waiting 
+ Container app-app-1 Healthy 
+ Container app-db-1 Healthy 
+ Container app-app-1 Stopping 
+ Container app-app-1 Stopped 
+ Container app-app-1 Removing 
+ Container app-app-1 Removed 
+ Container app-db-1 Stopping 
+ Container app-db-1 Stopped 
+ Container app-db-1 Removing 
+ Container app-db-1 Removed 
+ Network app_backend Removing 
+ Volume app_db_data Removing 
+ Volume app_db_data Removed 
+ Network app_backend Removed 
+ Network app_backend Creating 
+ Network app_backend Creating 
+ Volume app_db_data Creating 
+ Volume app_db_data Creating 
+ Volume app_db_data Created 
+ Volume app_db_data Created 
+ Network app_backend Created 
+ Network app_backend Created 
+ Container app-db-1 Creating 
+ Container app-db-1 Created 
+ Container app-app-1 Creating 
+ Container app-app-1 Created 
+ Container app-db-1 Starting 
+ Container app-db-1 Started 
+ Container app-db-1 Waiting 
+ Container app-db-1 Healthy 
+ Container app-app-1 Starting 
+ Container app-app-1 Started 
+ Container app-db-1 Waiting 
+ Container app-app-1 Waiting 
+ Container app-db-1 Healthy 
+ Container app-app-1 Healthy 
+
+EXIT STATUS: 0

@@ -1,0 +1,8 @@
+PING 192.168.56.1 (192.168.56.1) 56(84) bytes of data.
+
+--- 192.168.56.1 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+192.168.56.1 dev enp0s8 lladdr 0a:00:27:00:00:30 REACHABLE 
+10.0.2.2 dev enp0s3 lladdr 52:54:00:12:35:00 DELAY 
+fe80::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE 

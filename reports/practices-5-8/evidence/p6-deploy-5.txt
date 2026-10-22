@@ -1,0 +1,5 @@
+SCENARIO: committed missing index
+site/index.html is missing
+
+
+EXIT STATUS: 1

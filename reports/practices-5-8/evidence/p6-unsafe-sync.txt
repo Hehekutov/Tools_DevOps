@@ -1,0 +1,11 @@
+total 2
+-rw-r--r-- 1 денис денис 196 Oct 23 00:42 404.html
+-rw-r--r-- 1 денис денис 346 Oct 23 00:42 index.html
+MSYS chmod did not change the NTFS source mode; intentionally reproduce unsafe mode with rsync --chmod=F666.
+sending incremental file list
+./
+404.html
+index.html
+
+sent 211 bytes  received 76 bytes  191.33 bytes/sec
+total size is 542  speedup is 1.89

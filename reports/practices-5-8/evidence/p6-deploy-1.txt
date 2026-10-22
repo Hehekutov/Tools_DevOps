@@ -1,0 +1,9 @@
+SCENARIO: dry-run
+sending incremental file list
+
+sent 119 bytes  received 19 bytes  92.00 bytes/sec
+total size is 526  speedup is 3.81 (DRY RUN)
+Dry run complete
+
+
+EXIT STATUS: 0

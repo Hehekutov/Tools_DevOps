@@ -1,0 +1,6 @@
+666 devops:devops /var/www/devops-site/index.html
+/var/www/devops-site/404.html
+/var/www/devops-site/index.html
+<h1>defaced</h1>
+
+EXIT STATUS: 0
