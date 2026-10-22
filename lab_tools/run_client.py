@@ -5,9 +5,12 @@ sys.stdout.reconfigure(encoding='utf-8')
 p=argparse.ArgumentParser();p.add_argument('script');p.add_argument('--log');a=p.parse_args()
 root=Path(__file__).resolve().parents[1]
 bindir=Path(os.environ['LOCALAPPDATA'])/'CodexDevOps/rsync/bin'
-for name in ['bash','sh','cygpath','env','chmod','ls','stat','grep','awk','sed','cat','cp','mv','rm','mkdir','find','sort','uniq','head','tail','sleep','printf','basename','dirname','uname','touch']:
+for name in ['bash','sh','ssh','cygpath','env','chmod','ls','stat','grep','awk','sed','cat','cp','mv','rm','mkdir','find','sort','uniq','head','tail','sleep','printf','basename','dirname','uname','touch']:
     src=Path(r'C:/Program Files/Git/usr/bin')/(name+'.exe')
     if src.exists():shutil.copy2(src,bindir/src.name)
+(bindir.parents[1]/'tmp').mkdir(exist_ok=True)
+(bindir.parents[1]/'etc').mkdir(exist_ok=True)
+(bindir.parents[1]/'etc/nsswitch.conf').write_text('db_home: env windows\n',encoding='ascii')
 env=os.environ.copy()
 env['PATH']=str(bindir)+os.pathsep+env['PATH']
 env['HOME']=str(Path.home()).replace('\\','/')
