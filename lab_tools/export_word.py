@@ -9,9 +9,23 @@ app=win32com.client.DispatchEx('Word.Application');app.Visible=False;app.Display
 try:
     paths=[Path(x).resolve() for x in sys.argv[1:]]
     for path in paths:
-        doc=app.Documents.Open(str(path),ReadOnly=True,AddToRecentFiles=False)
+        doc=app.Documents.Open(str(path),ReadOnly=False,AddToRecentFiles=False)
         pdf=path.with_suffix('.pdf')
-        try:doc.ExportAsFixedFormat(str(pdf),17,OpenAfterExport=False)
+        try:
+            assert doc.TablesOfContents.Count==1,'Expected an automatic table of contents'
+            for _ in range(3):
+                doc.Fields.Update()
+                for toc in doc.TablesOfContents:
+                    toc.Update()
+                    toc.Range.Font.Name='Times New Roman';toc.Range.Font.Size=12;toc.Range.Font.Color=0
+                    toc.Range.ParagraphFormat.LineSpacingRule=0
+                    toc.Range.ParagraphFormat.SpaceBefore=0;toc.Range.ParagraphFormat.SpaceAfter=3
+                doc.Repaginate()
+            doc.Repaginate()
+            for toc in doc.TablesOfContents:
+                toc.UpdatePageNumbers();toc.Range.Font.Color=0
+            doc.Save()
+            doc.ExportAsFixedFormat(str(pdf),17,OpenAfterExport=False,CreateBookmarks=1)
         finally:doc.Close(0)
         qa=path.parents[2]/'tmp'/'report-qa'/path.stem;qa.mkdir(parents=True,exist_ok=True)
         pages=convert_from_path(str(pdf),dpi=120)
