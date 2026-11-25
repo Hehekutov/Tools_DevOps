@@ -184,3 +184,21 @@ location /app/ {
 14 успешных проверок аудита и код 0. При публикации 5000 на всех интерфейсах
 аудит возвращает 1; после опыта возвращена безопасная конфигурация.
 Снимок 05-docker-compose сохраняет проект, базу и Nginx для следующей работы.
+
+## 10. Ansible
+
+Управляющий узел — отдельный Linux/WSL, управляемый узел — виртуальная машина Ubuntu Server 24.04 amd64 в сети Host-only. Проект находится в `ansible/`. Инвентарь `inventory/bootstrap.ini` используется для учётной записи `student`, а `inventory/prod.ini` задаёт учётную запись `devops` и путь к локальному ключу на управляющем узле. Проверка ключа SSH-хоста включена.
+
+Роль `base` устанавливает системные зависимости и Docker Engine. Роль `ssh` настраивает пользователя, вход по ключу и UFW. Роль `nginx` устанавливает reverse proxy. Роль `app` загружает `ghcr.io/hehekutov/devops-ci-app` и запускает контейнер. Приложение доступно на `127.0.0.1:5000` внутри VM, с управляющего узла запросы идут через Nginx на порт 80. Контрольный маршрут — `/health`.
+
+До ручного запуска укажите полный 40-символьный SHA опубликованного образа в `DEVOPS_APP_SHA`. В конвейере SHA передаётся через параметр `app_tag`. Публикация образа и запуск плейбука на VM пока не подтверждены.
+
+```bash
+cd ansible
+ansible-galaxy collection install -r requirements.yml
+ansible-playbook -i inventory/bootstrap.ini site.yml --syntax-check
+ansible-playbook site.yml --syntax-check
+ansible-playbook -i inventory/bootstrap.ini site.yml --ask-pass --ask-become-pass
+ansible-playbook site.yml
+ansible-playbook verify.yml
+```
